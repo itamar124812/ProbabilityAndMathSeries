@@ -11,9 +11,7 @@ namespace ConsoleApp5
 {
   
     class Program
-    {
-        
-       
+    {      
         static void Main(string[] args)
         {
             foreach (var item in MathSeries.FermatNumbers(7))

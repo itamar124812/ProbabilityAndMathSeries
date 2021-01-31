@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 namespace ConsoleApp5
 {
     static class Probability
-    {
-
-        
+    {    
         public static void probability()
         {
             int size = 0;
@@ -27,8 +25,7 @@ namespace ConsoleApp5
                 double.TryParse(input, out f);
                 arr[i] = f;
             }
-            double a = arr.Sum();
-            a = average(arr, a);
+            double a = average(arr);
             double m = median(arr);
             double v = various(arr);
             double s = Math.Sqrt(v);
@@ -37,7 +34,7 @@ namespace ConsoleApp5
         public static void probability(double[] Arr)
         {
             double a = Arr.Sum();
-            a = average(Arr, a);
+            a = average(Arr);
             double m = median(Arr);
             double v = various(Arr);
             double s = Math.Sqrt(v);
@@ -46,7 +43,7 @@ namespace ConsoleApp5
         private static double various(double[] arr)
         {
             double result = 0;
-            double u = average(arr, arr.Sum());
+            double u = average(arr);
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 result += (arr[i] - u) * (arr[i] - u);
@@ -65,13 +62,16 @@ namespace ConsoleApp5
             return result;
         }
 
-        private static double average(double[] arr, double a)
+        private static double average(double[] arr)
         {
-            a /= arr.GetLength(0);
-            return a;
+            double sum = arr.Sum();
+            return  sum/= arr.Length;
         }
-
-        public static double ARegersya(double[] X, double[] Y, double AverageX, double AverageY)
+        public static double BLinearRegression(double[] X, double[] Y)
+        {
+            return average(Y) - (ALinearRegression(X, Y, average(X), average(Y))* average(X));
+        }
+        public static double ALinearRegression(double[] X, double[] Y, double AverageX, double AverageY)
         {
             double Sum = 0;
             double SDX = Math.Sqrt(various(X));
