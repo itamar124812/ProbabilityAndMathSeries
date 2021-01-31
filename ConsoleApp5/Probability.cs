@@ -62,7 +62,7 @@ namespace ConsoleApp5
             return result;
         }
 
-        private static double average(double[] arr)
+        private static double average(double[] arr) 
         {
             double sum = arr.Sum();
             return  sum/= arr.Length;
