@@ -14,10 +14,14 @@ namespace ConsoleApp5
     {      
         static void Main(string[] args)
         {
-            foreach (var item in MathSeries.FermatNumbers(7))
+            
+            foreach (var item in MathSeries.CatalanNumbers(10))
             {
                 Console.Write(item.ToString() + " ");
+                //if (item == null)
+                //    Console.WriteLine();
             }
+           
             Console.WriteLine("press any key to close this window");
             Console.ReadKey();       
      }        

@@ -70,7 +70,7 @@ namespace ConsoleApp5
             }
             else throw new ArgumentOutOfRangeException();
         }
-        public static IEnumerable<int> PascalNumbers(int index)
+        public static IEnumerable<int?> PascalNumbers(int index)
         {
             if (index >= 0)
             {
@@ -80,11 +80,11 @@ namespace ConsoleApp5
                     {
                         yield return item;
                     }
+                    yield return null;
                 }
             }
             else throw new ArgumentOutOfRangeException();
         }
-
         public static IEnumerable<int> nCr(int n)
         {
             if (n >= 0)
@@ -123,6 +123,13 @@ namespace ConsoleApp5
                 yield return Math.Pow(2, Math.Pow(2, i)) + 1;
             }
             
+        }
+        public static IEnumerable<double> CatalanNumbers(uint index)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                yield return (Factorial(i * 2) / (Factorial(i) * Factorial(i+1)));
+            }
         }
     }
 }
