@@ -118,6 +118,17 @@ namespace ConsoleApp5
                 yield return (MathTools.Factorial(i * 2) / (MathTools.Factorial(i) * MathTools.Factorial(i+1)));
             }
         }
+        public static IEnumerable<double> TheHormonalSeries(uint index,int s)
+        {
+            if (s > 0)
+            {
+                for (int i = 1; i < index; i++)
+                {
+                    yield return Math.Pow(i, -s);
+                }
+            }
+            else throw new ArgumentOutOfRangeException();
+        }
         //public static IEnumerable<double> EulerNumbers(uint index)
         //{
         //    yield return 1;

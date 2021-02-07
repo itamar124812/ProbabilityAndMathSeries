@@ -58,7 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Line.cs" />
     <Compile Include="MathSeries.cs" />
     <Compile Include="Probability.cs" />
     <Compile Include="Program.cs" />
