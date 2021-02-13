@@ -35,7 +35,10 @@ namespace TestMathSieras
             Assert.AreEqual(MathTools.RisingFactorial(1, 0), 1);
             Assert.AreEqual(MathTools.RisingFactorial(0, 0), 1);
             Assert.AreEqual(MathTools.RisingFactorial(2, 2), 6);
-
+            Assert.AreEqual(MathTools.RisingFactorial(3, 3), 60);
+            Assert.AreEqual(MathTools.RisingFactorial(4, 5), 6400 + 320);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => MathTools.RisingFactorial(1, -1));
+            
         }
     }
 }

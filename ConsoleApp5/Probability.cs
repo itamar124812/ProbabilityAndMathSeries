@@ -40,8 +40,9 @@ namespace ConsoleApp5
             double s = Math.Sqrt(v);
             Console.WriteLine("average = {0},mesian = {1},various = {2},standard deviation = {3}", a, m, v, s);
         }
-        private static double various(double[] arr)
+        private static double various(double[] Arr)
         {
+            double[] arr = Arr;
             double result = 0;
             double u = average(arr);
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -50,8 +51,9 @@ namespace ConsoleApp5
             }
             return (result / arr.GetLength(0));
         }
-        private static double median(double[] arr)
+        private static double median(double[] Arr)
         {
+            double[] arr = Arr;
             Array.Sort(arr);
             int b = arr.GetLength(0); double result = 0;
             if (b % 2 == 0)
@@ -62,23 +64,27 @@ namespace ConsoleApp5
             return result;
         }
 
-        private static double average(double[] arr) 
+        private static double average(double[] Arr) 
         {
+            double[] arr = Arr;
             double sum = arr.Sum();
             return  sum/= arr.Length;
         }
-        public static double BLinearRegression(double[] X, double[] Y)
+        public static double BLinearRegression(double[] x, double[] y)
         {
-            return average(Y) - (ALinearRegression(X, Y, average(X), average(Y))* average(X));
+            Double[] X = x;
+            Double[] Y = y;
+            return average(Y) - (ALinearRegression(X, Y)* average(X));
         }
-        public static double ALinearRegression(double[] X, double[] Y, double AverageX, double AverageY)
+        public static double ALinearRegression(double[] x, double[] y)
         {
+            Double[] X = x;
+            Double[] Y = y;
             double Sum = 0;
-            double SDX = Math.Sqrt(various(X));
+            double SDX = various(X)  * X.Length;
             for (int i = 0; i < X.Length; i++)
             {
-                X[i] -= AverageX;
-                Y[i] -= AverageY;
+                Y[i] -= average(Y) ;
                 Sum += X[i] * Y[i];
             }
             return Sum / SDX;
