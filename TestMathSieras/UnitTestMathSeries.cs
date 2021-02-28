@@ -28,7 +28,15 @@ namespace TestMathSieras
             Assert.AreEqual(MathSeries.Fibonacci(0).Min(),1);
             Assert.AreEqual(MathSeries.Fibonacci(0).Max(), 1);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => MathSeries.Fibonacci(-1).Min());
-        }        
+        }
+        [TestMethod]
+        public void TestSumOfPowers()
+        {
+            Random ran = new Random(DateTime.Now.Millisecond);
+            int index = ran.Next(1000);
+            Assert.AreEqual(MathSeries.SumOfPowers((uint)index,2),((double)(index*(index+1)*(2*index+1)))/6);
+            Assert.AreEqual(MathSeries.SumOfPowers((uint)index, 3), (Math.Pow(((index+1)*index)/2,2)));
+        }
         [TestMethod]
         public void TestRisingFuctorial()
         {

@@ -9,6 +9,17 @@ namespace ConsoleApp5
 {
    public static class MathSeries
     {
+
+        public static double SumOfPowers(uint index,int power)
+        {
+            double c = (double)1 / (power + 1);
+            double sum = 0;
+            for (int i = 0; i <= power; i++)
+            {
+                sum += MathTools.NcR(power + 1, i) * MathTools.BrenoulliNumber((uint)i, true) * Math.Pow(index, power + 1 - i);
+            }
+            return Math.Round(sum * c);
+        }
         public static IEnumerable<double> Fibonacci(int index)
         {
             if (index >= 0)
@@ -118,6 +129,46 @@ namespace ConsoleApp5
                 yield return (MathTools.Factorial(i * 2) / (MathTools.Factorial(i) * MathTools.Factorial(i+1)));
             }
         }
+        public static IEnumerable<double> BrenoulliNumbers(uint index,bool Sign)
+        {
+            if (Sign) {
+                for (int i = 0; i < index; i++)
+                {
+                    if (i % 2 == 0 || i==1)
+                    {
+                        double sum = 0;
+                        for (int k = 0; k <= i; k++)
+                        {
+                            for (int v = 0; v <= k; v++)
+                            {
+                                sum += (Math.Pow(-1, v) * MathTools.NcR(k, v) * ((double)Math.Pow(v + 1, i) / (k + 1)));
+                            }
+                        }
+                        yield return Math.Round(sum,8);
+                    }
+                    else yield return 0;
+                } }
+            else
+            {
+                for (int i = 0; i < index; i++)
+                {
+                    if (i % 2 == 0 || i == 1)
+                    {
+                        double sum = 0;
+                        for (int k = 0; k <= i; k++)
+                        {
+                            for (int v = 0; v <= k; v++)
+                            {
+                                sum += (Math.Pow(-1, v) * MathTools.NcR(k, v) * ((double)Math.Pow(v, i) / (k + 1)));
+                            }
+                        }
+                        yield return Math.Round(sum, 8); 
+                    }
+                    else yield return 0;
+                }
+            }
+        }
+        
         public static IEnumerable<double> TheHormonalSeries(uint index,int s)
         {
             if (s > 0)
@@ -143,10 +194,53 @@ namespace ConsoleApp5
         //        }
         //        yield return sum * constant;
         //    }
-        //}
+        //}      
+        public static IEnumerable<int> MinNumSiers(uint index)
+        {
+            for (int i = 1; i <= index; i++)
+            {
+                yield return MathTools.MinNum(i);
+            }
+        }
     }
     public static class MathTools
     {
+        public static double BrenoulliNumber(uint i,bool Sign)
+        {
+            if (Sign)
+            {           
+                    if (i % 2 == 0 || i == 1)
+                    {
+                        double sum = 0;
+                        for (int k = 0; k <= i; k++)
+                        {
+                            for (int v = 0; v <= k; v++)
+                            {
+                                sum += (Math.Pow(-1, v) * MathTools.NcR(k, v) * ((double)Math.Pow(v + 1, i) / (k + 1)));
+                            }
+                        }
+                         return Math.Round(sum, 8);
+                    }
+                    else  return 0;              
+            }
+            else
+            {               
+                    if (i % 2 == 0 || i == 1)
+                    {
+                        double sum = 0;
+                        for (int k = 0; k <= i; k++)
+                        {
+                            for (int v = 0; v <= k; v++)
+                            {
+                                sum += (Math.Pow(-1, v) * MathTools.NcR(k, v) * ((double)Math.Pow(v, i) / (k + 1)));
+                            }
+                        }
+                         return Math.Round(sum, 8);
+                    }
+                    else  return 0;             
+            }
+
+            }
         public static int Fuctorial(this int a)
         {
             return (int)MathTools.Factorial(a);
@@ -200,5 +294,46 @@ namespace ConsoleApp5
             }
             else throw new ArgumentOutOfRangeException();
         }
+        //returns the minimum number by which all numbers are divided
+        public static int MinNum(int x)
+        {
+            int result = 1;
+            for (int i = 1; i < x; i++)
+            {
+                if(IsPrime(i))
+                {
+                    result *= i;
+                }
+                else
+                {
+                    foreach (int item in PraimaryFactors(i))
+                    {
+                        if (result % item != 0)
+                            result *= item;
+                    }
+                }
+            }
+            return result;
+        }
+        public static bool IsPrime(double p)
+        {
+            //if(Primes.GetPrimes.ElementAt((int)p/1000).Find(e=>e==p)!=null)
+           {
+                return true;
+            }
+            return false;
+        }
+        public static IEnumerable<int> PraimaryFactors(int x)
+        {
+            for (int i = 2; i <= Math.Pow(x,0.5); i++)
+            {
+                if (x % i == 0)
+                {
+                    if (IsPrime(i)) yield return i;
+                    else PraimaryFactors(x / i);
+                }
+            }
+        }
+       
     }
 }
