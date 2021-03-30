@@ -334,6 +334,19 @@ namespace ConsoleApp5
                 }
             }
         }
-       
+        public static List<int> continuedFraction(int a, int b)
+        {
+            List<int> result = new List<int>();
+            while (b != 0)
+            {
+                result.Add(a / b);
+                int temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return result;
+
+        }
+
     }
 }

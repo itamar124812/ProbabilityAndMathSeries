@@ -16,6 +16,12 @@ namespace ConsoleApp5
             {
             double[] X = new double[5] { 18, 15, 12, 10, 5 };
             double[] Y = new double[5] { 14, 14, 10, 8, 6};
+            int sum = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                sum += (int)Math.Pow(i, 2) + i;
+            }
+            Console.WriteLine(sum);
             foreach (var item in MathSeries.BrenoulliNumbers(10,true))
             {
                 Console.Write(item + " ");
