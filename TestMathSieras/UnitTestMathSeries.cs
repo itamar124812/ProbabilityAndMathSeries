@@ -5,8 +5,8 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace ConsoleApp5.Tests
-{
+namespace TestMathSieras
+{ 
     [TestClass()]
     public class UnitTestMathSeries
     {
@@ -14,23 +14,35 @@ namespace ConsoleApp5.Tests
         public void continuedFractionTest()
         {
             List<int> check = new List<int> { 8, 19, 1, 1, 3, 2 };
-            Assert.AreEqual(MathTools.continuedFraction(2520, 313).Count, check.Count);
+            Assert.AreEqual(MathTools.rationalContinuedFraction(2520, 313).Count, check.Count);
             int i = 0;
-            foreach (var item in MathTools.continuedFraction(2520,313))
-            {              
+            foreach (var item in MathTools.rationalContinuedFraction(2520, 313))
+            {
                 Assert.AreEqual(item, check[i]);
                 i++;
             }
         }
-    }
-}
 
-namespace TestMathSieras
-{
+        [TestMethod()]
+        public void irrationalContinuedFractionTest()
+        {
+            List<int> check = new List<int> {2, 1, 2, 1, 1, 4, 1, 1, 6, 1, 1, 8, 1, 1, 10, 1, 1, 12, 1, 1, 10, 2, 1, 3, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 7, 4, 1, 8};
+            Assert.AreEqual(check.Count, MathTools.irrationalContinuedFraction(Math.E).Count);
+            for (int i = 0; i < check.Count; i++)
+            {
+                Assert.AreEqual(check[i], MathTools.irrationalContinuedFraction(Math.E)[i]);
+            }
+        }
 
-    [TestClass]
-    public class UnitTestMathSeries
-    {
+        [TestMethod()]
+        public void convertFromContinuedFractionToDoubleTest()
+        {
+            Assert.AreEqual(MathTools.convertFromContinuedFractionToDouble(MathTools.irrationalContinuedFraction(Math.E)), Math.E);
+            Assert.AreEqual(MathTools.convertFromContinuedFractionToDouble(MathTools.irrationalContinuedFraction(Math.PI)), Math.PI);
+            Assert.AreEqual(MathTools.convertFromContinuedFractionToDouble(MathTools.irrationalContinuedFraction(Math.PI/2)), Math.PI/2);
+
+        }
+
         [TestMethod]
         public void TestIntFuctorial()
         {

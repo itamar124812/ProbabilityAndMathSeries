@@ -334,7 +334,7 @@ namespace ConsoleApp5
                 }
             }
         }
-        public static List<int> continuedFraction(int a, int b)
+        public static List<int> rationalContinuedFraction(int a, int b)
         {
             List<int> result = new List<int>();
             while (b != 0)
@@ -346,6 +346,32 @@ namespace ConsoleApp5
             }
             return result;
 
+        }
+        public static List<double> irrationalContinuedFraction(double number)
+        {
+            string Number = number.ToString();
+            int length = Number.Substring(Number.IndexOf(".") + 1).Length;
+            double a = number * Math.Pow(10, length);
+            double b = Math.Pow(10, length);
+            List<double> result = new List<double>();
+            while (b != 0)
+            {
+                result.Add(Math.Floor(a / b));
+                double temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return result;
+        }
+        public static double convertFromContinuedFractionToDouble<T>(List<T> number)
+        {
+            double result = 0;
+            for (int i = number.Count - 1; i >= 0; i--)
+            {
+                result += Convert.ToDouble(number[i]);
+                if (i != 0) result = 1 / result;
+            }
+            return result;
         }
 
     }
