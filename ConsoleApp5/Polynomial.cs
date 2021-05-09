@@ -59,11 +59,50 @@ namespace ConsoleApp5
             return new Polynomial(rank-1, newR);
         }
         #endregion
+        #region Arithmetic
+        public Polynomial polynomialProduct(Polynomial other)
+        {
+            double[] coefficients = new double[rank + other.rank + 1];
+            for (int i = rank; i >=0; i--)
+            {
+                for (int j = other.rank; j >=0; j--)
+                {
+                    coefficients[i + j] += Coefficients[i] * other.Coefficients[j];
+                }
+            }
+            return new Polynomial(rank + other.rank, coefficients);
+        }
+        public Polynomial scalePolynomial(double a)
+        {
+            if (a == 0) throw new ArgumentOutOfRangeException("The scalar cannot be zero.");
+            double[] newCoefficients = Coefficients;
+            for (int i = 0; i < newCoefficients.Length; i++)
+            {
+                newCoefficients[i] *= a;
+            }
+            return new Polynomial(rank, newCoefficients);
+        }
+        public Polynomial addPolynomial(Polynomial other)
+        {
+            double[] coefficients = other.Coefficients.Length > Coefficients.Length ? other.Coefficients : Coefficients;
+            int Rank = rank < other.rank ? rank : other.rank;
+            for (int i = 0; i <=Rank ; i++)
+            {
+                coefficients[i] += other.Coefficients.Length > Coefficients.Length ? Coefficients[i] : other.Coefficients[i];
+            }
+            return new Polynomial(coefficients.Length - 1, coefficients);
+        }
+        public Polynomial substructPolynomial(Polynomial other)
+        {
+            if (other.Equals(this)) throw new ArgumentException("The polynomial must be diffrent from zero.");
+            return this.addPolynomial(other.scalePolynomial(-1));
+        }
         private bool isZero(double num)
         {
             if (Math.Abs(num)< Math.Pow(10, -14)) return true;
             else return false;
         }
+        #endregion
         public double getPolyAtSpecificX0(double X0)
         {
             double sum = Coefficients[rank];
@@ -110,6 +149,17 @@ namespace ConsoleApp5
             return true;
         }
         #endregion
+        public override string ToString()
+        {
+            string result =Coefficients[0]==0?string.Empty: Coefficients[0].ToString();
+            for (int i = 1; i <= rank; i++)
+            {
+                if(Coefficients[i]!=0&& Coefficients[i]!=1&&Coefficients[i]>0) result += string.Format("+{0}x^{1}",Coefficients[i],i);
+                else if(Coefficients[i] == 1) result += string.Format("+x^{0}", i);
+                else if(Coefficients[i] < 0)result += string.Format("{0}x^{1}", Coefficients[i], i);
+            }
+            return result;
+        }
     }
 
 }

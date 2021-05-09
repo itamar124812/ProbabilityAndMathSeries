@@ -50,11 +50,32 @@ namespace ConsoleApp5.Tests
         [TestMethod()]
         public void nIntegralTest()
         {
-            Assert.AreEqual(new Polynomial(2, new double[3] { 3, 8, 3 }).nIntegral(1,0),8);
+            Assert.AreEqual(new Polynomial(2, new double[3] { 3, 8, 3 }).nIntegral(1, 0), 8);
             //EP=The upper bound is lower then the lower bound
             Assert.AreEqual(new Polynomial(2, new double[3] { 3, 8, 3 }).nIntegral(0, 1), -8);
             //BVA-The upper bound has the same value as the lower bound
             Assert.AreEqual(new Polynomial(2, new double[3] { 3, 8, 3 }).nIntegral(1, 1), 0);
+        }
+
+        [TestMethod()]
+        public void addPolynomialTest()
+        {
+            Assert.AreEqual(new Polynomial(2, new double[3] { 3, 8, 3 }).addPolynomial(new Polynomial(1, new double[2] { 1, 2 })), new Polynomial(2, new double[3] { 4, 10, 3 }));
+            Assert.AreEqual(new Polynomial(1, new double[2] { 1, 2 }).addPolynomial(new Polynomial(2, new double[3] { 3, 8, 3 })), new Polynomial(2, new double[3] { 4, 10, 3 }));
+            Assert.AreEqual(new Polynomial(1, new double[2] { 1, 2 }).addPolynomial(new Polynomial(1, new double[2] { 3, 4 })), new Polynomial(1, new double[2] { 4, 6 }));
+        }
+        [TestMethod()]
+        public void substructPolynomialTest()
+        {
+            Assert.AreEqual(new Polynomial(2, new double[3] { 3, 8, 3 }).substructPolynomial(new Polynomial(1, new double[2] { 1, 2 })), new Polynomial(2, new double[3] { 2, 6, 3 }));
+            Assert.AreEqual(new Polynomial(1, new double[2] { 1, 2 }).substructPolynomial(new Polynomial(2, new double[3] { 3, 8, 3 })), new Polynomial(2, new double[3] { -2, -6, -3 }));
+            Assert.AreEqual(new Polynomial(1, new double[2] { 1, 2 }).substructPolynomial(new Polynomial(1, new double[2] { 3, 4 })), new Polynomial(1, new double[2] { -2, -2 }));
+        }
+
+        [TestMethod()]
+        public void polynomialProductTest()
+        {
+            Assert.AreEqual(new Polynomial(1, new double[2] { 3, 4 }).polynomialProduct(new Polynomial(1, new double[2] { 2, 2 })),new Polynomial(2,new double[3] { 6,14,8}));
         }
     }
 }
