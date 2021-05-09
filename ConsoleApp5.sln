@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathSeriesAndProbability", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMathSieras", "TestMathSieras\TestMathSieras.csproj", "{6932E436-C580-4ED1-8A81-0C1FCED57CE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathSeriesAndProbabilityTests", "MathSeriesAndProbabilityTests\MathSeriesAndProbabilityTests.csproj", "{C8DB9B28-3CA4-4321-9612-96364B5BCCC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6932E436-C580-4ED1-8A81-0C1FCED57CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6932E436-C580-4ED1-8A81-0C1FCED57CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6932E436-C580-4ED1-8A81-0C1FCED57CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8DB9B28-3CA4-4321-9612-96364B5BCCC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8DB9B28-3CA4-4321-9612-96364B5BCCC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8DB9B28-3CA4-4321-9612-96364B5BCCC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8DB9B28-3CA4-4321-9612-96364B5BCCC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

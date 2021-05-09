@@ -205,6 +205,17 @@ namespace ConsoleApp5
     }
     public static class MathTools
     {
+        //neesds to be more accurate
+        public static double Integral(Func<double,double> func,double upper,double down)
+        {
+            double sum = 0;
+            double preI = down;
+            for (double i = (down+0.0001); i < upper; i+=0.0001)
+            {
+                sum += (i - preI) * (func(i)+func(preI)/2);
+            }
+            return sum/10000;
+        }
         public static double BrenoulliNumber(uint i,bool Sign)
         {
             if (Sign)

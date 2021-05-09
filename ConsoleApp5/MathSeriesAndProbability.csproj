@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MathSeries.cs" />
-    <Compile Include="Primes.cs" />
+    <Compile Include="Polynomial.cs" />
     <Compile Include="Probability.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
