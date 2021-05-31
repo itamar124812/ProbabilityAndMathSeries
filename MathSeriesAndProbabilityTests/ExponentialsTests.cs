@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ConsoleApp5;
 using System;
+using MathematicalFunctions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

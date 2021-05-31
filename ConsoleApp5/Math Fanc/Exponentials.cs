@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp5
+namespace MathematicalFunctions
 {
     public class Exponentials
     {
@@ -15,7 +15,7 @@ namespace ConsoleApp5
         public Exponentials(double @base)
         {
             Base = @base;
-            exponent = new Polynomial(1, new double[2] { 0, 1 });
+            exponent = new Polynomial(1, new double[2] { 0, 1 }.ToList());
         }
 
         public Exponentials(double @base, Polynomial exponent)
@@ -35,7 +35,6 @@ namespace ConsoleApp5
         {
             if (multiplicationArgument == null) return new Exponentials(Base, exponent, exponent.derivativePolynomial().scalePolynomial(Math.Log(Base)));
             else return new Exponentials(Base, exponent, multiplicationArgument.derivativePolynomial().addPolynomial(multiplicationArgument.polynomialProduct(exponent.derivativePolynomial().scalePolynomial(Math.Log(Base)))));
-
         }
         public double getValueAtX0(double x0)
         {
@@ -51,9 +50,9 @@ namespace ConsoleApp5
             if (!(obj is Exponentials exponentials) ||
                    !(Base == exponentials.Base)) return false;
             if (!exponent.Equals((obj as Exponentials).exponent)) return false;
-            if (multiplicationArgument == null|| multiplicationArgument.Equals(new Polynomial(0, new double[1] { 1 })))
+            if (multiplicationArgument == null|| multiplicationArgument.Equals(new Polynomial(0, new double[1] { 1 }.ToList())))
             {
-                if ((obj as Exponentials).multiplicationArgument != null && !(obj as Exponentials).multiplicationArgument.Equals(new Polynomial(0, new double[1] { 1 })))return false;
+                if ((obj as Exponentials).multiplicationArgument != null && !(obj as Exponentials).multiplicationArgument.Equals(new Polynomial(0, new double[1] { 1 }.ToList())))return false;
             }
             else if (!multiplicationArgument.Equals((obj as Exponentials).multiplicationArgument)) return false;
             return true;

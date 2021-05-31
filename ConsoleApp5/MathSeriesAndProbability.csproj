@@ -58,9 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exponentials.cs" />
+    <Compile Include="Math Fanc\Exponentials.cs" />
+    <Compile Include="Math Fanc\MathTools\MathTools.cs" />
     <Compile Include="MathSeries.cs" />
-    <Compile Include="Polynomial.cs" />
+    <Compile Include="Math Fanc\Polynomial.cs" />
     <Compile Include="Probability.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
